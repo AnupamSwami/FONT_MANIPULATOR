@@ -1,34 +1,24 @@
 <html>
 <head>
-  <title>Realtime Drawing</title>
+    <title>Font Manipulator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
-  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
-
-  <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="main.js"></script>
 </head>
 
-<body>
-<center>
-  <h3 class="btn btn-info heading">Changing width, height and postion of a square in Realtime
-    <br>
-    <span class="note">NOTE - Get your left and right wrist closer 
-      to reduce the size of the square and to increase the size of 
-      the square keep your left and right wrist far from each other. 
-      Move you nose to move the square</span>
-    <br>
-    <p id="square_side"></p>
-  </h3>
-</center>
-<div class="copy_right_footer">
-  DEVELOPED BY - Anupam Swami
-</div>
-<script src="main.js"></script>
+<body background="data:image/jpeg;base64,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">
+  <div class="btn btn-warning heading">
+   <b>FONT MANIPULATOR</b> <p>NOTE :- Get Your Left and Right Wrist Closer to Each Other to Reduce The Font Size and
+    to Increase the Font Size Keep Your Left And Right Wrist Far From Each Other .</p>
+    <h3>FONT SIZE OF THE TEXT WILL BE :- <span id="span_size"></span></h3> 
+  </div>
+  <div class="copy_right_footer">
+    DEVELOPED BY - Anupam Swami
+  </div>
 </body>
 </html>
-
-

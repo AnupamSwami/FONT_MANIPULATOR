@@ -1,43 +1,43 @@
-noseX = 0 ;
-noseY = 0 ;
-difference = 0 ;
 leftWristX = 0 ;
 rightWristX = 0 ;
+difference = 0 ;
 
 function setup() {
+    canvas = createCanvas(400 , 400) ;
+    canvas.position(850 , 153) ;
     video = createCapture(VIDEO) ;
-    video.size(550 , 500) ;
+    video.size(500 , 475) ;
+    video.position(100 , 117) ;
 
-    canvas = createCanvas(500 , 470) ;
-    canvas.position(800 , 90) ;
-
-    poseNet = ml5.poseNet(video , modelLoaded) ;
-    poseNet.on('pose' , gotPoses) ;
-} 
-
-function modelLoaded() {
-    console.log('PoseNet Is Initialised.') ;
+    poseNet = ml5.poseNet('pose' , modelLoaded) ;
+    poseNet.on(video , gotPoses) ;
 }
 
-function gotPoses(results) {
-    if(results.length > 0) {
-        console.log(results) ;
-        noseX = results[0].pose.nose.x ;
-        noseY = results[0].pose.nose.y ;
-        console.log("Nose X : " + noseX + " Nose Y : " + noseY) ;
+function modelLoaded() {
+    console.log('PoseNet Is Initialised') ;
+}
 
-        leftWristX = results[0].pose.leftWrist.x ;
-        rightWristX = results[0].pose.rightWrist.y ;
-        difference = floor(leftWristX - rightWristX) ;
-        console.log("Left Wrist X : " + leftWristX + " Right Wrist X : " + rightWristX + " Difference : " + difference) ;
+function gotPoses(results,error){
+    if(error){
+        console.error(error);
+    }
+    if(results.length > 0){
+        console.log(results);
+
+        leftWrist_x = results[0].pose.leftWrist.x;
+        rightWrist_x = results[0].pose.rightWrist.x;
+
+        difference = floor(leftWrist_x - rightWrist_x);
+
+        console.log("rightWrist_x = "+results[0].pose.rightWrist.x + " rightWrist_y = "+results[0].pose.rightWrist.y);
+        console.log("leftWrist_x = "+results[0].pose.leftWrist.x + " leftWrist_y = "+results[0].pose.leftWrist.y);
     }
 }
 
 function draw() {
-    document.getElementById("square_side").innerHTML = "The Side Of The Square Will Be : " + difference + "px" ;
-
-    background('#969A97') ;
-    fill('#87CEEB') ;
-    stroke('#87CEEB') ;
-    square(noseX , noseY , difference) ;
+    background('#87CEEB') ;
+    document.getElementById("span_size").innerHTML = "Font Size Of The Text Will Be = "+difference+"px";
+    textSize(difference);
+    fill("#000000");
+    text('Anupam',180,200);
 }
