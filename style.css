@@ -1,31 +1,13 @@
-body {
-    background-size: 100%;
-}
-
 .heading {
-    color: rgb(255, 255, 255);
-    font-size: 35px;
+    font-size: 23px;
     width: 100%;
-
+    margin: 0px;
+    box-shadow: 5px 5px 5px grey;
 }
 
-p {
-    font-size: 16px;
-    color: red;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-.heading:hover , p:hover {
-    color: rgb(0, 255, 0);
-    font-family: cursive;
-    box-shadow: 10px 10px 10px rgb(0, 255, 255);
-    text-shadow: 5px 5px 5px rgb(0, 0, 255);
-}
-
-canvas {
-    background: white;
-    border: 5px solid blue;
-    border-radius: 20px;
+.note {
+    font-size: 15px;
+    color: black;
 }
 
 .copy_right_footer {
@@ -36,4 +18,16 @@ canvas {
     background-color: grey;
     line-height: 3;
     text-align: center;
+}
+
+canvas {
+    border: 5px solid white;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px grey;
+}
+
+p {
+    font-size: 20px;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
